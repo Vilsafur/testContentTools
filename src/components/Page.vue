@@ -1,13 +1,13 @@
 <template>
-  <div class="page" size="A4" data-editable :data-name="name">
-    <p>What are you waiting for? Start writing!</p>
+  <div class="page" size="A4" data-editable :data-name="id">
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
   name: 'page',
-  props: ['name']
+  props: ['id']
 }
 </script>
 

@@ -1,13 +1,13 @@
 <template>
   <div id="document">
-    <Page name="1"></Page>
-    <Page name="2"></Page>
+    <Page v-for="(page, id) in pages" :key="id" :id="id" v-html="page.body"></Page>
   </div>
 </template>
 
 <script>
 import Page from './Page.vue'
 import ContentTools from 'ContentTools'
+import { mapState } from 'vuex'
 
 export default {
   name: 'document',
@@ -16,13 +16,16 @@ export default {
       editing: false
     }
   },
+  computed: {
+    ...mapState({
+      pages: state => state.pages
+    })
+  },
   mounted () {
     this.editor = ContentTools.EditorApp.get()
     this.editor.init('*[data-editable]', 'data-name')
     this.editor.start()
-    console.log(this.editor.getState())
     this.editor.ignition().state('editing')
-    console.log(this.editor.getState())
     this.editor.addEventListener('start', ev => (this.editing = true))
     this.editor.addEventListener('stop', ev => (this.editing = false))
   },
