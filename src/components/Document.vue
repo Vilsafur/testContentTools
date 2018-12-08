@@ -8,6 +8,7 @@
 import Page from './Page.vue'
 import ContentTools from 'ContentTools'
 import { mapState } from 'vuex'
+const fr = require('../../node_modules/ContentTools/translations/fr.json')
 
 export default {
   name: 'document',
@@ -23,6 +24,8 @@ export default {
   },
   mounted () {
     this.editor = ContentTools.EditorApp.get()
+    ContentEdit.addTranslations('fr', fr)
+    ContentEdit.LANGUAGE = 'fr'
     this.editor.init('*[data-editable]', 'data-name')
     this.editor.start()
     this.editor.ignition().state('editing')
