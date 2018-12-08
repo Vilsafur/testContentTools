@@ -31,8 +31,6 @@ export default {
     this.editor.ignition().state('editing')
     this.editor.addEventListener('start', ev => (this.editing = true))
     this.editor.addEventListener('stop', ev => (this.editing = false))
-    ContentEdit.addTranslations('fr', fr)
-    ContentEdit.LANGUAGE = 'fr'
   },
   components: {
     Page
